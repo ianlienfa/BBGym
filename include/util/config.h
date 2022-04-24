@@ -1,7 +1,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define JOB_NUMBER 30
+#define JOB_NUMBER 100
 #define TIME_TYPE float
 
 // exit codes
@@ -35,11 +35,8 @@
 #define labeler_bynet 2
 
 /* Available Solver Bundles */
-#define bundle_NULL 0
 #define bundle_OneRjSumCj_LU_AND_SAL 1
 #define bundle_OneRjSumCj_CBFS 2
-
-/* ==================== Simple Strategy Choices ========================== */
 
 /* Simple Strategy Choices */
 #define SEARCH_BUNDLE bundle_OneRjSumCj_CBFS
@@ -57,7 +54,7 @@
     #define BRANCH_STRATEGY 1
     #define PRUNE_STRATEGY  0
     #define LOWER_BOUND lowerbound_oneRjSumCj_LU_AND_SAL
-    #define LABELER labeler_unify
+    #define LABELER labeler_bylevel
 #endif
 
 /* Problem specific specifications <-- Change Specific Solving Strategies Here!
@@ -80,6 +77,7 @@
 #ifndef POST_SOLVE_PRINT_CONFIG
     #define POST_SOLVE_PRINT_CONFIG(graph)  post_print_config(graph)
 #endif 
+
 #ifndef SOLVE_CALLBACK    
     extern void solveCallbackImpl( void* );
     #define SOLVE_CALLBACK(engine) solveCallbackImpl(engine)

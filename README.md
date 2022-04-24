@@ -8,4 +8,5 @@
   * The bad news is that bitset for STL do not support dynamically change on its size
   * For the vanilla Lu algorithm, prune__OneRjSumCj__LU_AND_SAL__Theorem1 must be on
 
+* docker run -v ~/Coding/BBGym:/BBGym --platform linux/amd64 -it ianlienfa/nsd:hw3.0 /bin/bash
 

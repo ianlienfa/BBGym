@@ -6,6 +6,19 @@ project(BranchAndBoundSmart CXX)
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   set(MACOSX TRUE)
 endif()
+# with -fPIC
+# if(UNIX AND NOT WIN32)
+#   FIND_PROGRAM(CMAKE_UNAME uname /bin /usr/bin /usr/local/bin )
+#   if(CMAKE_UNAME)
+#     EXEC_PROGRAM(uname ARGS -m OUTPUT_VARIABLE CMAKE_SYSTEM_PROCESSOR)
+#     SET(CMAKE_SYSTEM_PROCESSOR ${CMAKE_SYSTEM_PROCESSOR} CACHE INTERNAL
+# "processor type (i386 and x86_64)")
+#     if(CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64")
+#       ADD_DEFINITIONS(-fPIC)
+#     endif(CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64")
+#   endif(CMAKE_UNAME)
+# endif(UNIX AND NOT WIN32)
+
 
 
 # control variables
@@ -19,7 +32,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(PROJECT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 set(HOME_INC_DIR ${PROJECT_PATH}/include)
 add_compile_options(-Wall)
-
 
 # Torch related variables
 set(TORCH_PREFIX_PATH "./libtorch")
@@ -37,6 +49,9 @@ FetchContent_Declare(
   URL https://github.com/google/googletest/archive/af29db7ec28d6df1c7f0f745186884091e602e07.zip
 )
 FetchContent_MakeAvailable(googletest)
+
+# pybind11 related variables
+set(PYBIND_PREFIX_PATH "./extern/pybind11")
 
 ######################  PACKAGE DEPENDENCIES  ########################
 # PACKAGES 
@@ -79,6 +94,7 @@ include_directories(${HOME_INC_DIR})
 
 # subdirectories
 add_subdirectory(include)
+add_subdirectory(${PYBIND_PREFIX_PATH}) # for pybind11
 
 ###########################################################################
 # executables
@@ -107,10 +123,41 @@ target_link_libraries(
     LowerBound PriorityQueue JobWithReleaseDate # Util
 )
 
+# pybind11_add_module(bbgym pybind/base.cpp)
+add_library(bbgym MODULE pybind/base.cpp)
+target_link_libraries(
+  bbgym   # target
+  PRIVATE
+  pybind11::module # pybind11
+  "${Python3_LIBRARIES}" # Python3
+  problemNode searchGraph problemParser searchMod pruneMod branchMod Labeler types PlainLabeler # Base
+  oneRjSumCj_engine oneRjSumCjNode oneRjSumCjBranch oneRjSumCjPrune oneRjSumCjSearch # OneRjSumCj
+  LowerBound PriorityQueue JobWithReleaseDate # Util
+)
+IF( APPLE )
+SET_TARGET_PROPERTIES( bbgym
+  PROPERTIES
+    LINK_FLAGS "-undefined dynamic_lookup"
+    SUFFIX     ".so"
+)
+ENDIF()
+pybind11_extension(bbgym)
+pybind11_strip(bbgym)
+
+set_target_properties(bbgym PROPERTIES CXX_VISIBILITY_PRESET "hidden"
+                                         CUDA_VISIBILITY_PRESET "hidden")
+
+
+
 ######################  SELF-DEFINED COMMANDS  ########################
 # cmake run
 add_custom_target(run
     ./main
     DEPENDS main
+    WORKING_DIRECTORY ${PROJECT_PATH}/build
+)
+
+add_custom_target(cls
+    rm -f *.so && rm -f  *.out && rm -f  load && rm -f  main
     WORKING_DIRECTORY ${PROJECT_PATH}/build
 )
