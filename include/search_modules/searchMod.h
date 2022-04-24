@@ -11,8 +11,8 @@ using std::vector;
 struct SearchMod
 {
 private:
-    bool graph_filled = false;
-    bool find_optimal = false;
+    // bool graph_filled = false;
+    // bool find_optimal = false;
 public:
     
     // Inherited SearchMod should maintain its own graph and provide the following functions:

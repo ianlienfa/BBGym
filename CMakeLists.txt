@@ -15,9 +15,11 @@ set(COMMAND_ARG "main")
 ################ PRE-PACKAGE SEARCH VARIABLES SETUP ################
 # general variables
 set(CMAKE_OSX_ARCHITECTURES "x86_64") # For m1 mac
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(PROJECT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 set(HOME_INC_DIR ${PROJECT_PATH}/include)
+add_compile_options(-Wall)
+
 
 # Torch related variables
 set(TORCH_PREFIX_PATH "./libtorch")
@@ -28,9 +30,17 @@ if(MACOSX)
   set(PYTHON_NUMPY_INCLUDE_DIR "/opt/homebrew/Caskroom/miniforge/base/envs/ML/lib/python3.9/site-packages/numpy/core/include")
 endif()
 
+# Google Test related variables
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/af29db7ec28d6df1c7f0f745186884091e602e07.zip
+)
+FetchContent_MakeAvailable(googletest)
+
 ######################  PACKAGE DEPENDENCIES  ########################
 # PACKAGES 
-find_package(Torch REQUIRED)  # Torch
+# find_package(Torch REQUIRED)  # Torch
 
 # matlablib dependecies
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")

@@ -35,8 +35,11 @@
 #define labeler_bynet 2
 
 /* Available Solver Bundles */
+#define bundle_NULL 0
 #define bundle_OneRjSumCj_LU_AND_SAL 1
 #define bundle_OneRjSumCj_CBFS 2
+
+/* ==================== Simple Strategy Choices ========================== */
 
 /* Simple Strategy Choices */
 #define SEARCH_BUNDLE bundle_OneRjSumCj_CBFS
@@ -77,6 +80,16 @@
 #ifndef POST_SOLVE_PRINT_CONFIG
     #define POST_SOLVE_PRINT_CONFIG(graph)  post_print_config(graph)
 #endif 
+#ifndef SOLVE_CALLBACK    
+    extern void solveCallbackImpl( void* );
+    #define SOLVE_CALLBACK(engine) solveCallbackImpl(engine)
+#endif
+
+#ifndef OPTIMAL_FOUND_CALLBACK    
+    extern void optimalFoundCallbackImpl( void* );
+    #define OPTIMAL_FOUND_CALLBACK(engine) optimalFoundCallbackImpl(engine)
+#endif
+
 
 /* debugging */
 #define DEBUG_LEVEL 0

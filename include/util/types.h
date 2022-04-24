@@ -27,6 +27,17 @@ class NotImplemented : public std::logic_error
 public:
     NotImplemented() : std::logic_error("Function not yet implemented") { };
 };
-
+// operator overloading
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const std::vector<T>& v)
+{
+    os << "[";
+    for (typename std::vector<T>::const_iterator ii = v.begin(); ii != v.end(); ++ii)
+    {
+        os << " " << *ii;
+    }
+    os << " ]";
+    return os;
+}
 
 #endif

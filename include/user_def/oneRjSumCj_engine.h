@@ -49,7 +49,6 @@ struct OneRjSumCj_engine
     void update_incumbent(const OneRjSumCjNode &current_node);
     TIME_TYPE objSolve(const OneRjSumCjNode &current_node);
     
-    double get_optimal(){};
     double get_jobs_num();
 };
 

@@ -3,6 +3,8 @@
 #include "user_def/oneRjSumCj_engine.h"
 #include "user_def/oneRjSumCjPrune.h"
 #include "problem_parser/problemParser.h"
+void solveCallbackImpl(void* engine_ptr){}
+
 
 int main(int argc, char* argv[])
 {        
