@@ -6,8 +6,8 @@
 
 struct PlainLabeler: Labeler
 {
-    PlainLabeler();
-    int operator()(const OneRjSumCjNode &node) const;    
+    PlainLabeler(){};
+    int operator()(const OneRjSumCjNode &node) const{return node.seq.size();};    
 };
 
 
