@@ -19,3 +19,5 @@ jobs:
       run: mkdir build && cmake -B ${{github.workspace}}/build 
     - name: make
       run: cd ${{github.workspace}}/build && make main
+    - name: run simple instance
+      run: ./${{github.workspace}}/build/main < ../case/1.txt
