@@ -15,8 +15,6 @@ jobs:
     - uses: actions/checkout@v3
     - name: Checkout submodules
       run: git submodule update --init --recursive
-    - name: setup
-      run: wget https://download.pytorch.org/libtorch/nightly/cpu/libtorch-shared-with-deps-latest.zip && unzip libtorch-shared-with-deps-latest.zip && rm libtorch-shared-with-deps-latest.zip
     - name: cmake configure
       run: mkdir build && cmake -B ${{github.workspace}}/build 
     - name: make
