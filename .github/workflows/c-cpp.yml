@@ -16,9 +16,6 @@ jobs:
     - name: setup
       run: | 
         wget https://download.pytorch.org/libtorch/nightly/cpu/libtorch-shared-with-deps-latest.zip && unzip libtorch-shared-with-deps-latest.zip && rm libtorch-shared-with-deps-latest.zip
-        sudo apt-get install python-numpy python2.7-dev > /dev/null 
-    - name: "Setup tmate session"
-      uses: mxschmitt/action-tmate@v3
     - name: cmake configure
       run: mkdir build && cmake -B ${{github.workspace}}/build 
     - name: make
