@@ -8,10 +8,18 @@ jobs:
         run: wget https://download.pytorch.org/libtorch/nightly/cpu/libtorch-shared-with-deps-latest.zip && unzip libtorch-shared-with-deps-latest.zip
       
       - name: cmake_build
-        run: mkdir build && cd ./build && cmake .. && echo "" && echo "🎉 cmake successful"
+        run: |
+          mkdir build
+          cd ./build
+          pwd
+          cmake .. 
+          echo "🎉 cmake successful"
         
       - name: make_build
-        run: cd ./build && make main && echo "" && echo "🎉 make successful"
+        run: |
+          pwd
+          make main 
+          echo "🎉 make successful"
 
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
