@@ -10,6 +10,7 @@ jobs:
       - name: cmake_build
         run: |
           mkdir ${{github.workspace}}/build
+          ls ${{github.workspace}}
           cmake -B ${{github.workspace}}/build 
           pwd
           cmake .. 
