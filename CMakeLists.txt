@@ -6,24 +6,9 @@ project(BranchAndBoundSmart CXX)
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   set(MACOSX TRUE)
 endif()
-# with -fPIC
-# if(UNIX AND NOT WIN32)
-#   FIND_PROGRAM(CMAKE_UNAME uname /bin /usr/bin /usr/local/bin )
-#   if(CMAKE_UNAME)
-#     EXEC_PROGRAM(uname ARGS -m OUTPUT_VARIABLE CMAKE_SYSTEM_PROCESSOR)
-#     SET(CMAKE_SYSTEM_PROCESSOR ${CMAKE_SYSTEM_PROCESSOR} CACHE INTERNAL
-# "processor type (i386 and x86_64)")
-#     if(CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64")
-#       ADD_DEFINITIONS(-fPIC)
-#     endif(CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64")
-#   endif(CMAKE_UNAME)
-# endif(UNIX AND NOT WIN32)
-
-
 
 # control variables
 set(COMMAND_ARG "main")
-# set(COMMAND_ARG "test")
 
 ################ PRE-PACKAGE SEARCH VARIABLES SETUP ################
 # general variables
@@ -36,7 +21,6 @@ add_compile_options(-Wall)
 # Torch related variables
 set(TORCH_PREFIX_PATH "./libtorch")
 set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH}" "${TORCH_PREFIX_PATH}")
-
 
 # NumPy related variables
 if(MACOSX)
@@ -55,35 +39,8 @@ FetchContent_MakeAvailable(googletest)
 set(PYBIND_PREFIX_PATH "./extern/pybind11")
 
 ######################  PACKAGE DEPENDENCIES  ########################
-# PACKAGES 
-# find_package(Torch REQUIRED)  # Torch
 
-# matlablib dependecies
-# set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules/")
-# message("CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
-# find_package(Eigen3)
-
-# if (${EIGEN3_FOUND})
-#   include_directories(${EIGEN3_INCLUDE_DIR})
-# else()
-#   message(STATUS "Eigen3 not found")
-# endif()
-
-# find_package(Python3 COMPONENTS Interpreter Development)
-# if (${Python3_FOUND})
-#   include_directories(${Python3_INCLUDE_DIRS})
-# else()
-#   message(FATAL_ERROR "Python3 not found, please install it.")
-# endif()
-
-# find_package(NumPy)
-# if (${PYTHON_NUMPY_FOUND})
-#   include_directories(${PYTHON_NUMPY_INCLUDE_DIR})
-# else()
-#   message(WARNING "Python3 NumPy not found, proceeding with -DWITHOUT_NUMPY."
-#   " Some functions might not work.")
-#   add_definitions(-DWITHOUT_NUMPY)
-# endif()
+### 
 
 ################# POST-PACKAGE SEARCH VARIABLES SETUP ###############
 # Package specific configuration
