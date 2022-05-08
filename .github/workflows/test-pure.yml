@@ -9,8 +9,8 @@ jobs:
       
       - name: cmake_build
         run: |
-          mkdir build
-          cd ./build
+          mkdir ${{github.workspace}}/build
+          cd -B ${{github.workspace}}/build 
           pwd
           cmake .. 
           echo "🎉 cmake successful"
