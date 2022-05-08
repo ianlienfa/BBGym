@@ -14,7 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: setup
-      run: wget https://download.pytorch.org/libtorch/nightly/cpu/libtorch-shared-with-deps-latest.zip && unzip libtorch-shared-with-deps-latest.zip && rm libtorch-shared-with-deps-latest.zip
+      run: | 
+        wget https://download.pytorch.org/libtorch/nightly/cpu/libtorch-shared-with-deps-latest.zip && unzip libtorch-shared-with-deps-latest.zip && rm libtorch-shared-with-deps-latest.zip
+        apt-get install python-numpy python2.7-dev > /dev/null 
     - name: cmake configure
       run: mkdir build && cmake -B ${{github.workspace}}/build 
     - name: make
