@@ -8,6 +8,7 @@ using std::vector;
 #include "BB_engine/searchGraph.h"
 #include "BB_engine/problemNode.h"
 
+
 struct SearchMod
 {
 private:

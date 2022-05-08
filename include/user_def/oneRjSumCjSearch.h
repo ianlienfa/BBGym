@@ -14,7 +14,7 @@ using std::make_pair;
 #include "search_modules/strategy_providers/PlainLabeler.h"
 #include "util/LowerBound.h"
 
-struct OneRjSumCjSearch: SearchMod
+struct OneRjSumCjSearch
 {
     OneRjSumCjGraph *graph;
 

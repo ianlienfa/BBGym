@@ -20,6 +20,7 @@ typedef std::pair<double, double> Pdd;
 #define BASIC_MIN(a,b) ((a)<(b)?(a):(b))
 #define BASIC_ABS(a) ((a)>0?(a):-(a))
 #define BASIC_SWAP(a,b) {a^=b;b^=a;a^=b;}
+#define assertm(msg, expr) assert(( (void)(msg), (expr) ))
 
 // exception class
 class NotImplemented : public std::logic_error

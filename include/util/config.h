@@ -3,6 +3,7 @@
 
 #define JOB_NUMBER 100
 #define TIME_TYPE float
+#define LABEL_TYPE int
 
 // exit codes
 #define NOT_INIT 50
