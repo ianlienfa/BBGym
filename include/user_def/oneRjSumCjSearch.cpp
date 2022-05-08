@@ -80,9 +80,6 @@ vector<OneRjSumCjNode> OneRjSumCjSearch::update_graph(OneRjSumCjNode current_nod
         int label = labeler(*it);
 
         // prepare the data    
-        
-
-
         map<int, PriorityQueue<OneRjSumCjNode>>::iterator target_contour_iter = this->graph->contours.find(label);
         if(target_contour_iter == this->graph->contours.end())
         {
