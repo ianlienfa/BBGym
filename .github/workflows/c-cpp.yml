@@ -20,4 +20,4 @@ jobs:
     - name: cmake configure
       run: mkdir build && cmake -B ${{github.workspace}}/build 
     - name: make
-      run: make main
+      run: cd ${{github.workspace}}/build && make main
