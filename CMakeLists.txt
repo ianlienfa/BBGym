@@ -37,6 +37,7 @@ add_compile_options(-Wall)
 set(TORCH_PREFIX_PATH "./libtorch")
 set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH}" "${TORCH_PREFIX_PATH}")
 
+
 # NumPy related variables
 if(MACOSX)
   set(PYTHON_NUMPY_INCLUDE_DIR "/opt/homebrew/Caskroom/miniforge/base/envs/ML/lib/python3.9/site-packages/numpy/core/include")
