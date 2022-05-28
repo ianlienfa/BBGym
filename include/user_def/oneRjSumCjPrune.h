@@ -17,8 +17,8 @@ typedef void (*prune_func_safept)(vector<OneRjSumCjNode>&, const OneRjSumCjGraph
 struct OneRjSumCjPrune: public PruneMod {
 
     OneRjSumCjGraph *graph; 
-    static vector<prune_func_pt> prune_funcs;
-    static vector<prune_func_safept> safe_prune_funcs;
+    vector<prune_func_pt> prune_funcs;
+    vector<prune_func_safept> safe_prune_funcs;
     void fill_graph(OneRjSumCjGraph *graph);
     void prune(vector<OneRjSumCjNode> &branched_nodes);
     void prune_func_init(vector<prune_func_pt>&);

@@ -1,8 +1,8 @@
 #include "oneRjSumCjPrune.h"
 
-/* Definition for static members */
-vector<prune_func_pt> OneRjSumCjPrune::prune_funcs;
-vector<prune_func_safept> OneRjSumCjPrune::safe_prune_funcs;
+// /* Definition for static members */
+// vector<prune_func_pt> OneRjSumCjPrune::prune_funcs;
+// vector<prune_func_safept> OneRjSumCjPrune::safe_prune_funcs;
 
 
 /*----------------------------------------------------------------------------

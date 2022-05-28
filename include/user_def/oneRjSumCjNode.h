@@ -31,7 +31,7 @@ struct OneRjSumCjNode: ProblemNode
     static string instance_name;
     static vector<TIME_TYPE> processing_time;
     static vector<TIME_TYPE> release_time;
-    static vector<TIME_TYPE> job_weight;    
+    static vector<TIME_TYPE> job_weight;               
     static int jobs_num;
     static B jobs_mask;
     /** 

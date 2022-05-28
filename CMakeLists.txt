@@ -18,6 +18,9 @@ set(PROJECT_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 set(HOME_INC_DIR ${PROJECT_PATH}/include)
 add_compile_options(-Wall)
 
+# for python module
+add_compile_options(-fPIC)
+
 # Torch related variables
 set(TORCH_PREFIX_PATH "./libtorch")
 set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH}" "${TORCH_PREFIX_PATH}")
@@ -81,7 +84,6 @@ target_link_libraries(
     LowerBound PriorityQueue JobWithReleaseDate # Util
 )
 
-# pybind11_add_module(bbgym pybind/base.cpp)
 add_library(bbgym MODULE pybind/base.cpp)
 target_link_libraries(
   bbgym   # target
@@ -92,6 +94,7 @@ target_link_libraries(
   oneRjSumCj_engine oneRjSumCjNode oneRjSumCjBranch oneRjSumCjPrune oneRjSumCjSearch # OneRjSumCj
   LowerBound PriorityQueue JobWithReleaseDate # Util
 )
+
 IF( APPLE )
 SET_TARGET_PROPERTIES( bbgym
   PROPERTIES

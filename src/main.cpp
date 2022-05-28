@@ -3,25 +3,25 @@
 #include "user_def/oneRjSumCj_engine.h"
 #include "user_def/oneRjSumCjPrune.h"
 #include "problem_parser/problemParser.h"
+
 void solveCallbackImpl(void* engine_ptr){}
 
-
 int main(int argc, char* argv[])
-{        
-
-    OneRjSumCjPrune::prune_funcs = {
-        prune__OneRjSumCj__LU_AND_SAL__Theorem1
-    };
-    OneRjSumCjPrune::safe_prune_funcs = {
-        pruneIncumbentCmpr
-    };
-        
+{                
     if (argc != 2)
     {
         if(parse_and_init_oneRjSumCj())
         {
             OneRjSumCj_engine solver; 
             OneRjSumCjGraph graph;
+
+            // set up prune funcs
+            solver.pruner.prune_funcs = {
+                prune__OneRjSumCj__LU_AND_SAL__Theorem1
+            };
+            solver.pruner.safe_prune_funcs = {
+                pruneIncumbentCmpr
+            };    
             graph = solver.solve(OneRjSumCjNode());  
         }
         return 0;

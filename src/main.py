@@ -1,0 +1,1 @@
+import sys; sys.path.append('/BBGym/build/'); import bbgym; bbgym.solve_cbfs();
