@@ -24,6 +24,6 @@ jobs:
     - name: run simple instance
       run: cd ${{github.workspace}}/build && ./main < ../case/1.txt
     - name: run cbfs instance
-      run: cat ${{github.workspace}}/case/5.txt | python -c "import sys; sys.path.append('/BBGym/build/'); import bbgym; bbgym.solve_cbfs();"
+      run: cat ${{github.workspace}}/case/5.txt | python -c "import os; import sys; work_dir=os.environ.get('github.workspace'); sys.path.append(work_dir + "/build/"); import bbgym; bbgym.solve_cbfs();"
     - name: run bfs instance
-      run: cat ${{github.workspace}}/case/5.txt | python -c "import sys; sys.path.append('/BBGym/build/'); import bbgym; bbgym.solve_bfs();"
+      run: cat ${{github.workspace}}/case/5.txt | python -c "import os; import sys; work_dir=os.environ.get('github.workspace'); sys.path.append(work_dir + "/build/"); import bbgym; bbgym.solve_bfs();"
