@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
             solver.pruner.safe_prune_funcs = {
                 pruneIncumbentCmpr
             };    
-            solver.searcher.labeler.cbfs();
+            solver.searcher.labeler.bfs();
             graph = solver.solve(OneRjSumCjNode());  
         }
         return 0;

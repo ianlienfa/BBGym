@@ -19,5 +19,11 @@ jobs:
       run: mkdir build && cmake -B ${{github.workspace}}/build 
     - name: make
       run: cd ${{github.workspace}}/build && make main
+    - name: make python module
+      run: cd ${{github.workspace}}/build && make bbgym
     - name: run simple instance
       run: cd ${{github.workspace}}/build && ./main < ../case/1.txt
+    - name: run cbfs instance
+      run: cat ${{github.workspace}}/case/5.txt | python -c "import sys; sys.path.append('/BBGym/build/'); import bbgym; bbgym.solve_cbfs();"
+    - name: run bfs instance
+      run: cat ${{github.workspace}}/case/5.txt | python -c "import sys; sys.path.append('/BBGym/build/'); import bbgym; bbgym.solve_bfs();"

@@ -99,6 +99,18 @@ vector<OneRjSumCjNode> OneRjSumCjSearch::update_graph(OneRjSumCjNode current_nod
         }        
     }
 
+    // locate the next contour
+    map<int, PriorityQueue<OneRjSumCjNode>>::iterator next_iter = this->graph->current_contour_iter;
+    // if there's contour left after deletion, cycle back or go to the next
+    if(this->graph->contours.size() > 1)
+    {        
+        next_iter++;
+        if(next_iter == this->graph->contours.end())
+        {
+            next_iter = this->graph->contours.begin();
+        }        
+    }
+
     // clean contour
     if(this->graph->current_contour_iter->second.empty())
     {
@@ -124,6 +136,9 @@ vector<OneRjSumCjNode> OneRjSumCjSearch::update_graph(OneRjSumCjNode current_nod
         }
         this->graph->contours.erase(current_iter);
     }
+    // update the current contour
+    this->graph->current_contour_iter = next_iter;
+
     
     return branched_nodes;
 }
