@@ -49,7 +49,7 @@ we can save them in a ordered map
 
 #if (SEARCH_STRATEGY == searchOneRjSumCj_CBFS)
 OneRjSumCjNode OneRjSumCjSearch::search_next() {
-    // pop element from the current contour
+    // pop element from the current contour  
     #if DEBUG_LEVEL >=2         
         cout << "current contour: " << graph->current_contour_iter->first << endl;
         cout << "current contour size: " << graph->current_contour_iter->second.size() << endl;

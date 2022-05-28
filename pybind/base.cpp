@@ -8,12 +8,7 @@ using std::cout, std::endl;
 
 void solveCallbackImpl(void* engine_ptr){}
 namespace py = pybind11;
-OneRjSumCjPrune::prune_funcs = {
-    prune__OneRjSumCj__LU_AND_SAL__Theorem1
-};
-OneRjSumCjPrune::safe_prune_funcs = {
-    pruneIncumbentCmpr
-};
+
 
 PYBIND11_MODULE(bbgym, m) {
     m.attr("__name__") = "bbgym";
@@ -22,6 +17,12 @@ PYBIND11_MODULE(bbgym, m) {
         {
             OneRjSumCj_engine solver; 
             OneRjSumCjGraph graph;
+            solver.pruner.prune_funcs = {
+                prune__OneRjSumCj__LU_AND_SAL__Theorem1
+            };
+            solver.pruner.safe_prune_funcs = {
+                pruneIncumbentCmpr
+            };    
             graph = solver.solve(OneRjSumCjNode());  
         }   
     })
@@ -30,6 +31,12 @@ PYBIND11_MODULE(bbgym, m) {
         {
             OneRjSumCj_engine solver; 
             solver.searcher.labeler.bfs();
+            solver.pruner.prune_funcs = {
+                prune__OneRjSumCj__LU_AND_SAL__Theorem1
+            };
+            solver.pruner.safe_prune_funcs = {
+                pruneIncumbentCmpr
+            };    
             OneRjSumCjGraph graph;
             graph = solver.solve(OneRjSumCjNode());  
         }   
@@ -39,6 +46,12 @@ PYBIND11_MODULE(bbgym, m) {
         {
             OneRjSumCj_engine solver; 
             solver.searcher.labeler.brfs();
+            solver.pruner.prune_funcs = {
+                prune__OneRjSumCj__LU_AND_SAL__Theorem1
+            };
+            solver.pruner.safe_prune_funcs = {
+                pruneIncumbentCmpr
+            };    
             OneRjSumCjGraph graph;
             graph = solver.solve(OneRjSumCjNode());  
         }   
@@ -48,6 +61,12 @@ PYBIND11_MODULE(bbgym, m) {
         {
             OneRjSumCj_engine solver; 
             solver.searcher.labeler.cbfs();
+            solver.pruner.prune_funcs = {
+                prune__OneRjSumCj__LU_AND_SAL__Theorem1
+            };
+            solver.pruner.safe_prune_funcs = {
+                pruneIncumbentCmpr
+            };    
             OneRjSumCjGraph graph;
             graph = solver.solve(OneRjSumCjNode());  
         }   

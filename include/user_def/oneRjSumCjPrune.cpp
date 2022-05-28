@@ -58,6 +58,10 @@ void OneRjSumCjPrune::prune(vector<OneRjSumCjNode> &branched_nodes){
    The naming convention is prune__{PROBLEM_NAME}__{PRUNING_STRATEGY}__{PRUNING_FUNCTION_NAME} 
 */
 void pruneIncumbentCmpr(vector<OneRjSumCjNode>& branched_nodes, const OneRjSumCjGraph &graph) {
+    #if DEBUG_LEVEL == 2
+    cout << "pruneIncumbentCmpr: enter " << endl;
+    #endif     
+
     for(vector<OneRjSumCjNode>::iterator it = branched_nodes.begin(); it != branched_nodes.end(); it++)
     {
         if(it->lb >= graph.min_obj)
@@ -72,6 +76,10 @@ void pruneIncumbentCmpr(vector<OneRjSumCjNode>& branched_nodes, const OneRjSumCj
 }
 
 void prune__OneRjSumCj__LU_AND_SAL__Theorem1(vector<OneRjSumCjNode>& branched_nodes, OneRjSumCjGraph &graph) {    
+    #if DEBUG_LEVEL == 2
+    cout << "prune__OneRjSumCj__LU_AND_SAL__Theorem1: enter "<< endl;
+    #endif     
+
     if(branched_nodes.size() == 0)
         return;
     #if (VALIDATION_LEVEL == validation_level_HIGH)
